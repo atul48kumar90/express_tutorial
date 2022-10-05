@@ -4,11 +4,9 @@ const app = express();
 
 const members = require('./Members');
 
+const logger = require('./middleware/logger');
 
-const logger = (req, res, next) => {
-    console.log("Hello");
-    next();
-}
+
 
 app.use(logger);
   
