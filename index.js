@@ -10,13 +10,14 @@ const logger = require('./middleware/logger');
 
 app.use(logger);
   
-app.get('/api/members', (req, res) => {
-    res.json(members);
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/members', require('./routes/api/members'))
 
 const PORT = process.env.PORT || 5000;
 
